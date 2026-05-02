@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Butter Joy – Healthy Eating Guide</title>
+    <meta
+      name="description"
+      content="Discover healthy diets, calculate calories, and plan your weekly meals with The Butter Joy."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ===== header ===== -->
+    <header class="site-header">
+      <a href="#" class="logo">
+        <img src="img/logo.png" alt="The Butter Joy Logo" />
+        <span>The Butter Joy</span>
+      </a>
+      <nav>
+        <a href="#" data-page="home" class="active">Home</a>
+        <a href="#" data-page="calculator">Calorie Calculator</a>
+        <a href="#" data-page="planner">Meal Planner</a>
+        <a href="#" data-page="reviews">Reviews</a>
+      </nav>
+    </header>
+    <!-- ==================== home page  ==================== -->
+    <div id="page-home" class="page active">
+      <!-- Banner -->
+      <section class="banner">
+        <img src="img/poster (4).jpg" alt="Healthy food spread" />
+        <div class="overlay">
+          <div>
+            <h1>Healthy Eating Guide</h1>
+            <p>Discover the right diet for you</p>
+          </div>
+        </div>
+      </section>
+      <div class="content">
+        <!-- Diet Types -->
+        <h2 class="section-title">Types of Healthy Diets</h2>
+        <div id="diet-grid" class="card-grid"></div>
+        <!-- Portions -->
+        <h2 class="section-title" id="portion-title">Recommended Portions</h2>
+        <div class="box">
+          <div id="portion-bar" class="portion-bar"></div>
+          <div id="portion-legend" class="portion-legend"></div>
+        </div>
+        <!-- BMI Calculator -->
+        <h2 class="section-title" style="margin-top: 2rem">BMI Calculator</h2>
+        <div class="box">
+          <div class="form-grid">
+            <div>
+              <label class="field-label">Height (cm)</label>
+              <input type="number" id="bmi-height" placeholder="e.g. 170" />
+            </div>
+            <div>
+              <label class="field-label">Weight (kg)</label>
+              <input type="number" id="bmi-weight" placeholder="e.g. 65" />
+            </div>
+          </div>
+          <button class="btn btn-primary" id="btn-bmi">Calculate BMI</button>
+          <div id="bmi-output"></div>
+        </div>
+        <div class="box" id="extWebsite" style="margin-top: 2rem">
+          <a
+            href="https://www.healthhub.sg/programmes/nutrition-hub/nutri-grade-a-and-b-drinks#home"
+            target="_blank"
+          >
+            View Nutri-Grade directory
+          </a>
+          <a
+            href="https://www.sfa.gov.sg/news-publications/circulars-and-notices#food-alerts-recalls"
+            target="_blank"
+            >View Food Alerts & Recalls</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== calorie caculator ==================== -->
+    <div id="page-calculator" class="page">
+      <section class="banner short">
+        <img src="img/poster (5).jpg" alt="Protein dishes" />
+        <div class="overlay"><h1>Calorie Calculator</h1></div>
+      </section>
+      <div class="content">
+        <h2 class="section-title">Food Library</h2>
+        <div
+          style="
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+          "
+        >
+          <input
+            type="text"
+            id="calc-search"
+            placeholder="Search for a dish..."
+            style="flex: 1; min-width: 200px"
+          />
+          <select id="calc-category"></select>
+        </div>
+        <div id="food-grid" class="food-grid"></div>
+        <h2 class="section-title">Your Meal</h2>
+        <div id="meal-table"></div>
+        <div class="summary-bar right" style="margin-top: 1rem">
+          <span>Total: <span id="calc-total">0</span> kcal</span>
+        </div>
+      </div>
+    </div>
+    <!-- ==================== meal planner ==================== -->
+    <div id="page-planner" class="page">
+      <section class="banner short">
+        <img src="img/poster (1).jpg" alt="Meal prep" />
+        <div class="overlay"><h1>Weekly Meal Prep Planner</h1></div>
+      </section>
+      <div class="content content-wide">
+        <div class="box" style="margin-bottom: 1.5rem">
+          <label class="field-label" style="color: var(--accent)"
+            >Daily Calorie Target: <span id="cal-label">2000 kcal</span></label
+          >
+          <input
+            type="range"
+            id="cal-slider"
+            min="1200"
+            max="3500"
+            step="50"
+            value="2000"
+          />
+          <div class="range-info">
+            <span>1200 kcal</span><span>3500 kcal</span>
+          </div>
+          <button
+            class="btn btn-primary"
+            id="btn-randomise-all"
+            style="margin-top: 0.75rem"
+          >
+            🎲 Randomise All Days
+          </button>
+        </div>
+        <div style="overflow-x: auto">
+          <table
+            style="
+              border: 1px solid var(--border);
+              border-radius: var(--radius);
+              overflow: hidden;
+            "
+          >
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Breakfast</th>
+                <th>Lunch</th>
+                <th>Dinner</th>
+                <th class="text-right">Total</th>
+                <th class="text-center"></th>
+              </tr>
+            </thead>
+            <tbody id="planner-tbody"></tbody>
+          </table>
+        </div>
+        <div class="summary-bar" style="margin-top: 1rem">
+          <span>Weekly Average: <span id="weekly-avg">0 kcal/day</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== review page ==================== -->
+    <div id="page-reviews" class="page">
+      <section class="banner short">
+        <img src="img/poster (7).jpg" alt="Food reviews" />
+        <div class="overlay"><h1>Community Reviews</h1></div>
+      </section>
+      <div class="content">
+        <h2 class="section-title">Write a Review</h2>
+        <div class="box">
+          <form class="review-form" id="reviewForm">
+            <div class="form-row">
+              <label class="field-label" for="reviewName">Your Name</label>
+              <input type="text" id="reviewName" placeholder="e.g. Alex" />
+            </div>
+            <div class="form-row">
+              <label class="field-label">Your Rating</label>
+              <div class="stars" id="stars">
+                <button type="button" class="star" data-value="1">
+                  &#11089;
+                </button>
+                <button type="button" class="star" data-value="2">
+                  &#11089;
+                </button>
+                <button type="button" class="star" data-value="3">
+                  &#11089;
+                </button>
+                <button type="button" class="star" data-value="4">
+                  &#11089;
+                </button>
+                <button type="button" class="star" data-value="5">
+                  &#11089;
+                </button>
+              </div>
+              <p class="stars-meta" id="starsMeta">Selected: 0 star(s)</p>
+            </div>
+            <div class="form-row">
+              <label class="field-label" for="reviewText">Your Review</label>
+              <textarea
+                id="reviewText"
+                rows="4"
+                placeholder="Write something here..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review</button>
+            <p id="formMsg" class="form-msg"></p>
+          </form>
+        </div>
+        <h2 class="section-title" style="margin-top: 2rem">Recent Reviews</h2>
+        <div id="reviews-list"></div>
+      </div>
+    </div>
+    <!-- ===== footer ===== -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="footer-logo">The Butter Joy</span>
+          <p>
+            Your guide to healthy eating, smart calorie tracking, and balanced
+            meal planning.
+          </p>
+        </div>
+        <div class="footer-info">
+          <h4>About</h4>
+          <p>
+            The Butter Joy is a healthy eating guide designed to help you
+            discover the right diet and plan balanced meals for the week.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>©2026 The Butter Joy. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
